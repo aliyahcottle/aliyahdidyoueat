@@ -1,3 +1,17 @@
+
+.container{
+  background-image: url('images/Background.svg');
+  height: 100vh;
+  background-repeat: no-repeat;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container p{
+  margin: 0px;
+}
+
+
 .App {
   text-align: center;
 }
