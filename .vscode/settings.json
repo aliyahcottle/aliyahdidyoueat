@@ -2,5 +2,7 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/1a68f44d-a18a-4681-b94f-1593d4eaa8c6/resourceGroups/foodie/providers/Microsoft.Web/sites/aliyahdidyoueat",
+    "appService.deploySubpath": "."
 }

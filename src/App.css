@@ -1,52 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&display=swap');
 
 .container{
   background-image: url('images/Background.svg');
-  height: 100vh;
-  background-repeat: no-repeat;
   margin: 0px;
   padding: 0px;
+  background-repeat: repeat-y;
 }
 
-.container p{
-  margin: 0px;
+.container h1{
+  margin: 2.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #F4A261;
 }
 
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100%;
+}
+
+.description{
+  padding: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.description p{
+  text-align: center;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.list_view{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.resturant_item{
+  width: 282px;
+  height: 144px;
+  background-image: url('images/captain_bg.svg');
+  margin: 1rem;
+}
+
+.overlay{
+    width: 288px;
+    height: 151px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  
+}
+
+.resturant_category{
+  background-color: black;
+  color: white;
+  display: inline-block;
+  padding: .5rem;
+  margin-left: .4rem;
+  flex-basis: content;
+}
+
+.resturant_name{
+  background-color: white;
+  color: black;
+  display: inline-block;
+  padding: .5rem;
+  margin-left: .4rem;
 }
