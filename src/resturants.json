@@ -1,0 +1,13 @@
+[
+    {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
+    {"name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
+    {"name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
+    {"name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
+    {"name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
+    {"name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
+    {"name": "", "category": "", "website": "", "bg-pic": "" },
+    {"name": "", "category": "", "website": "", "bg-pic": "" },
+    {"name": "", "category": "", "website": "", "bg-pic": "" },
+    {"name": "", "category": "", "website": "", "bg-pic": "" }
+]
+
