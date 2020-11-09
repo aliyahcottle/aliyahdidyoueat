@@ -94,6 +94,8 @@ button.quick_button{
 .resturant_category p{
   margin: 0px;
   font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 .resturant_name{
@@ -102,12 +104,14 @@ button.quick_button{
   display: inline-block;
   padding: .5rem;
   margin-left: .4rem;
+  max-width: 260px !important;
 }
 
 .resturant_name p{
   margin: 0px;
   font-family: 'Nunito', sans-serif;
   font-size: 23px;
+  font-weight: 900;
 }
 
 footer{
@@ -116,3 +120,11 @@ footer{
   padding: 1rem;
   margin-top: 1rem;
 }
+
+/*  TO DO List
+
+*create seperate styling for Select Location heading 
+*play around with font pairings
+
+
+*/

@@ -37,6 +37,7 @@ class ListView extends React.Component {
       
       <Fade left>
         <ListComponent />
+
       </Fade>
     </div>
       );
@@ -60,7 +61,7 @@ class ListView extends React.Component {
          {resturants ? resturants.map(resturant => {
           
           return (
-           <div class="resturant_item">
+           <div class="resturant_item" key={resturant.index}>
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
              <div class="resturant_name"><p>{resturant.name}</p></div>
@@ -75,50 +76,81 @@ class ListView extends React.Component {
 
   class QuickRefine extends React.Component {
 
- /*    const emojiCategory = {
-
-      meatCategory: 'Meat',
-      pizzaCategory: 'Pizza & Pasta',
-      sushiCategory: 'Seafood'
-    }; */
 
     constructor(props){
       super(props);
       this.state = {
-        buttonPressed: false,
+        meatCategory: false,
+        pizzaCategory: false,
+        seafoodCategory: false,
+        tacoCategory: false,
+        breakfastCategory: false,
+        drinksCategory: false
       };
     }
 
-    ToggleCategory(){
-      this.setState((currentState) => ({
-        buttonPressed: !currentState.buttonPressed,
-      }));
-    }
+    ToggleCategory(category){
+      
+     switch (category) {
+       case 'meat': 
+        this.setState((currentState) => ({
+        meatCategory: !currentState.meatCategory,
+        }));
+        break;
 
+        case 'pizza': 
+        this.setState((currentState) => ({
+        pizzaCategory: !currentState.pizzaCategory,
+        }));
+        break;
+
+        case 'seafood': 
+        this.setState((currentState) => ({
+        seafoodCategory: !currentState.seafoodCategory,
+        }));
+        break;
+        
+        case 'taco': 
+        this.setState((currentState) => ({
+        tacoCategory: !currentState.tacoCategory,
+        }));
+        break;
+
+        case 'breakfast': 
+        this.setState((currentState) => ({
+        breakfastCategory: !currentState.breakfastCategory,
+        }));
+        break;
+
+        case 'drinks': 
+        this.setState((currentState) => ({
+        drinksCategory: !currentState.drinksCategory,
+        }));
+        break;
+
+     }  
+   }
     render(){
-
-      const category = this.state.emojiCategory
-
       return (
         <div class="quick_refine">
   
         
-        <button onClick={ () => this.ToggleCategory()} class={ this.state.buttonPressed ? "meat-on" : "quick_button"}>
+        <button onClick={ () => this.ToggleCategory('meat')} class={ this.state.meatCategory ? "meat-on" : "quick_button"}>
           <span class="emoji">🥩</span>
         </button>
-        <button onClick={ () => this.ToggleCategory()} class={ this.state.buttonPressed ? "pizza-on" : "quick_button"}>
+        <button onClick={ () => this.ToggleCategory('pizza')} class={ this.state.pizzaCategory ? "pizza-on" : "quick_button"}>
           <span class="emoji">🍕</span>
         </button>
-        <button onClick={ () => this.ToggleCategory()} class={ this.state.buttonPressed ? "seafood-on" : "quick_button"}>
+        <button onClick={ () => this.ToggleCategory('seafood')} class={ this.state.seafoodCategory ? "seafood-on" : "quick_button"}>
           <span class="emoji">🍣</span>
         </button>
-        <button onClick={ () => this.ToggleCategory()} class={ this.state.buttonPressed ? "tacos-on" : "quick_button"}>
+        <button onClick={ () => this.ToggleCategory('taco')} class={ this.state.tacoCategory ? "tacos-on" : "quick_button"}>
           <span class="emoji">🌮</span>
         </button>
-        <button onClick={ () => this.ToggleCategory()} class={ this.state.buttonPressed ? "breakfast-on" : "quick_button"}>
+        <button onClick={ () => this.ToggleCategory('breakfast')} class={ this.state.breakfastCategory ? "breakfast-on" : "quick_button"}>
           <span class="emoji">🥞</span>
         </button>
-        <button onClick={ () => this.ToggleCategory()} class={ this.state.buttonPressed ? "drinks-on" : "quick_button"}>
+        <button onClick={ () => this.ToggleCategory('drinks')} class={ this.state.drinksCategory ? "drinks-on" : "quick_button"}>
           <span class="emoji">🍻</span>
         </button>
   
