@@ -114,6 +114,14 @@ button.quick_button{
   font-weight: 900;
 }
 
+.resturant_card {
+  display: flex;
+  width: 100vw;
+  background: tomato;
+  height: 70vh;
+  border-radius: 20px 20px 0px 0px;
+}
+
 footer{
   background-color: black;
   color: white;

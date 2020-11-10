@@ -2,6 +2,24 @@ import React from 'react';
 import './App.css';
 import Fade from 'react-reveal/Fade';
 
+const resturants = [
+  {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
+  {"name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
+  {"name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
+  {"name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
+  {"name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
+  {"name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
+  {"name": "The Captain's Boil", "category": "seafood", "website": "https://thecaptainsboil.com/locations/", "bg-pic": "" },
+  {"name": "Goodfellas Wood Stove Pizza", "category": "pizza", "website": "", "bg-pic": "" },
+  {"name": "Papa Giuseppes", "category": "pizza", "website": "", "bg-pic": "" },
+  {"name": "KyKy Kookies", "category": "dessert", "website": "https://www.kykykookies.com/", "bg-pic": "" },
+  {"name": "Holy Shakes", "category": "food-truck", "website": "https://416-food-truck-company.square.site/", "bg-pic": "" },
+  {"name": "August 8", "category": "seafood", "website": "http://august8.ca/", "bg-pic": "" },
+  {"name": "Kaka", "category": "seafood", "website": "http://kakaallyoucaneat.ca/", "bg-pic": "" },
+  {"name": "Barsa", "category": "tapas", "website": "https://barsataberna.com/", "bg-pic": "" },
+  
+]; 
+
 class App extends React.Component {
 
   render(){
@@ -44,27 +62,47 @@ class ListView extends React.Component {
     }
   }
 
-  function ListComponent(){
+class ListComponent extends React.Component {
 
-    const resturants = [
-      {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
-      {"name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
-      {"name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
-      {"name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
-      {"name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
-      {"name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
-    ];
-  
-  
+
+  constructor(props){
+    super(props);
+    this.state = {
+      showCard: false
+    };
+
+    this.displayResturantCard = this.displayResturantCard.bind(this);
+  }
+    
+      displayResturantCard(){
+
+        this.setState((currentState) => ({
+          showCard: true,
+          }));
+          
+        if (this.state.showCard){
+          console.log('ive been identifed');
+          return <ResturantCard />;
+
+        } 
+        
+      }
+      
+      render(){
+
+        if (this.state.showCard){
+          return <ResturantCard/>;
+        }
+
       return (
         <div>
-         {resturants ? resturants.map(resturant => {
+         {resturants ? resturants.filter(resturants => resturants.category === 'meats' || 'seafood' || 'dessert').map(resturant => {
           
           return (
            <div class="resturant_item" key={resturant.index}>
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
-             <div class="resturant_name"><p>{resturant.name}</p></div>
+             <div class="resturant_name"><p><a onClick={this.displayResturantCard}>{resturant.name}</a></p></div>
             </div>   
            </div>
            );
@@ -73,6 +111,7 @@ class ListView extends React.Component {
         </div>
       );
     }
+  }
 
   class QuickRefine extends React.Component {
 
@@ -155,6 +194,16 @@ class ListView extends React.Component {
         </button>
   
       </div>
+      );
+    }
+  }
+
+  class ResturantCard extends React.Component {
+
+    render(){
+      console.log('ive been identifed in resturant card');
+      return (
+        <div class="resturant_card">This is the Resturant Card</div>
       );
     }
   }
