@@ -79,19 +79,12 @@ class ListComponent extends React.Component {
         this.setState((currentState) => ({
           showCard: true,
           }));
-          
-        if (this.state.showCard){
-          console.log('ive been identifed');
-          return <ResturantCard />;
-
-        } 
-        
       }
       
       render(){
 
         if (this.state.showCard){
-          return <ResturantCard/>;
+          return  <Fade up><ResturantCard/></Fade>;
         }
 
       return (
@@ -200,10 +193,33 @@ class ListComponent extends React.Component {
 
   class ResturantCard extends React.Component {
 
+    constructor(props){
+      super(props);
+      this.state = {
+        cardClosed: false
+      };
+
+      this.closeCard = this.closeCard.bind(this);
+    }
+
+    closeCard(){
+      this.setState((currentState) => ({
+        cardClosed: true
+        }));
+    }
+
     render(){
-      console.log('ive been identifed in resturant card');
+      
+      if (this.state.cardClosed){
+        return <Fade><ListComponent /> </Fade>;
+      }
+
       return (
-        <div class="resturant_card">This is the Resturant Card</div>
+        <div class="resturant_card">
+          
+          <div class="close_window"><button onClick={this.closeCard}>X</button></div>
+          
+        </div>
       );
     }
   }
