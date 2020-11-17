@@ -31,8 +31,10 @@ i{
 
 .quick_refine{
   display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  margin-top: 1rem;
+  height: 100vh;
+  position: fixed;
 }
 
 button.quick_button{
@@ -68,6 +70,7 @@ button.quick_button{
   height: 144px;
   background-image: url('images/captain_bg.svg');
   margin: 1rem;
+  margin-left: 5rem;
 }
 
 .overlay{
@@ -118,7 +121,7 @@ button.quick_button{
   display: flex;
   flex-direction: column;
   width: 100vw;
-  background: tomato;
+  background:white;
   height: 70vh;
   border-radius: 20px 20px 0px 0px;
 }
@@ -133,7 +136,27 @@ footer{
   background-color: black;
   color: white;
   padding: 1rem;
-  margin-top: 1rem;
+}
+
+.custom-select{
+display: flex;
+margin: 2rem;
+justify-content: flex-start;
+}
+
+.custom-select p{
+  color: white;
+  font-weight: 500;
+  margin-right: .5rem;
+}
+
+.location-select, .category-select, .price-select {
+  padding: .5rem;
+  margin: .2rem;
+}
+
+.show-list{
+  display: flex;
 }
 
 /*  TO DO List

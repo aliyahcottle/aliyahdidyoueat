@@ -49,14 +49,51 @@ class ListView extends React.Component {
   return (
       <div class="list_view">
 
-        <h1>Select Location:</h1>
+      <div class="custom-select">
 
-      <QuickRefine />
+        <p>Refine:</p>
+
+        <select class="location-select">
+          <option value="0">Location:</option>
+          <option value="1">Brampton</option>
+          <option value="2">Mississauga</option>
+          <option value="3">Milton</option>
+          <option value="4">Oakville</option>
+          <option value="5">Niagara Region</option>
+          <option value="6">Toronto</option>
+          <option value="7">Scarbourough</option>
+        </select>
+
+
+        <select class="category-select">
+          <option value="0">Category:</option>
+          <option value="1">Meat</option>
+          <option value="2">Pizza</option>
+          <option value="3">Seafood</option>
+          <option value="4">Tacos</option>
+          <option value="5">Breakfast</option>
+          <option value="6">Drinks</option>
+        </select>
+
+        <select class="price-select">
+          <option value="0">Price Range:</option>
+          <option value="1">$</option>
+          <option value="2">$$</option>
+          <option value="3">$$$</option>
+        </select>
+      </div>
+
+    <div class="show-list">
+
+    <QuickRefine />
       
       <Fade left>
         <ListComponent />
 
       </Fade>
+
+    </div>
+
     </div>
       );
     }
@@ -68,24 +105,37 @@ class ListComponent extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      showCard: false
+      showCard: false,
+      resturantName: null,
+      resturantCategory: null
     };
 
     this.displayResturantCard = this.displayResturantCard.bind(this);
   }
+
+    componentWillUnmount() {
+
+      this.setState((currentState) => ({
+        showCard: false
+      }));
+    }
     
-      displayResturantCard(){
+      displayResturantCard(name, category){
+
 
         this.setState((currentState) => ({
           showCard: true,
+          resturantName: name,
+          resturantCategory: category
+
           }));
       }
       
       render(){
 
-        if (this.state.showCard){
-          return  <Fade up><ResturantCard/></Fade>;
-        }
+       if (this.state.showCard){
+         return  <Fade up><ResturantCard restName={this.state.resturantName} restCat={this.state.resturantCategory}/></Fade>;
+       }
 
       return (
         <div>
@@ -95,7 +145,7 @@ class ListComponent extends React.Component {
            <div class="resturant_item" key={resturant.index}>
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
-             <div class="resturant_name"><p><a onClick={this.displayResturantCard}>{resturant.name}</a></p></div>
+             <div class="resturant_name"><p><a onClick={() => this.displayResturantCard()}>{resturant.name}</a></p></div>
             </div>   
            </div>
            );
@@ -218,6 +268,19 @@ class ListComponent extends React.Component {
         <div class="resturant_card">
           
           <div class="close_window"><button onClick={this.closeCard}>X</button></div>
+
+          <div class="resturant_details">
+
+         <h1>{this.state.resturantName}</h1>
+            <h3>Category</h3>
+            <p>Aliyah's take: here I put the information that I would want my date or 
+              friends to hear about this place and my fav things about it</p>
+            <p>Website</p>
+            <p>Embed map here</p>
+
+            <button>Date?</button>
+
+          </div>
           
         </div>
       );
