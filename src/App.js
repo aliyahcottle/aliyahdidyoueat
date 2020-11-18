@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Fade from 'react-reveal/Fade';
 
-const resturants = [
+const RESTURANTS = [
   {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
   {"name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
   {"name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
@@ -20,6 +20,8 @@ const resturants = [
   
 ]; 
 
+
+/* Aliyah, Did You Eat Entry Point */
 class App extends React.Component {
 
   render(){
@@ -32,7 +34,7 @@ class App extends React.Component {
             <i class="far fa-map"></i>
           </header>
 
-    <ListView/>
+    <ListView resturants={RESTURANTS}/>
 
     <footer> Aliyah Cottle </footer>
   
@@ -42,121 +44,79 @@ class App extends React.Component {
   }
 }
 
-
+/* List View - Components include: Custom Refine, Quick Refine, Resturant List */
 class ListView extends React.Component {
     
   render(){  
   return (
-      <div class="list_view">
+    <div class="list_view">
 
+     <CustomRefine />
+
+     <button>Pick Something Nice For Us?</button>
+
+      <div class="show-list">
+
+        <QuickRefine />
+      
+          <Fade left>
+            <ResturantList resturants={this.props.resturants} />
+          </Fade>
+
+       </div>
+
+    </div>
+      );
+    }
+}
+
+/* Custom Refine Component: Refine by Location, Category or Price Range */
+class CustomRefine extends React.Component {
+
+  render(){
+    return (
       <div class="custom-select">
 
-        <p>Refine:</p>
+      <p>Refine:</p>
 
-        <select class="location-select">
-          <option value="0">Location:</option>
-          <option value="1">Brampton</option>
-          <option value="2">Mississauga</option>
-          <option value="3">Milton</option>
-          <option value="4">Oakville</option>
-          <option value="5">Niagara Region</option>
-          <option value="6">Toronto</option>
-          <option value="7">Scarbourough</option>
-        </select>
+      <select class="location-select">
+        <option value="0">Location:</option>
+        <option value="1">Brampton</option>
+        <option value="2">Mississauga</option>
+        <option value="3">Milton</option>
+        <option value="4">Oakville</option>
+        <option value="5">Niagara Region</option>
+        <option value="6">Toronto</option>
+        <option value="7">Scarbourough</option>
+      </select>
 
 
-        <select class="category-select">
-          <option value="0">Category:</option>
-          <option value="1">Meat</option>
-          <option value="2">Pizza</option>
-          <option value="3">Seafood</option>
-          <option value="4">Tacos</option>
-          <option value="5">Breakfast</option>
-          <option value="6">Drinks</option>
-        </select>
+      <select class="category-select">
+        <option value="0">Category:</option>
+        <option value="1">Meat</option>
+        <option value="2">Pizza</option>
+        <option value="3">Seafood</option>
+        <option value="4">Tacos</option>
+        <option value="5">Breakfast</option>
+        <option value="6">Drinks</option>
+      </select>
 
-        <select class="price-select">
-          <option value="0">Price Range:</option>
-          <option value="1">$</option>
-          <option value="2">$$</option>
-          <option value="3">$$$</option>
-        </select>
-      </div>
-
-    <div class="show-list">
-
-    <QuickRefine />
+      <select class="price-select">
+        <option value="0">Price Range:</option>
+        <option value="1">$</option>
+        <option value="2">$$</option>
+        <option value="3">$$$</option>
+      </select>
       
-      <Fade left>
-        <ListComponent />
-
-      </Fade>
-
     </div>
 
-    </div>
-      );
-    }
+
+    );
   }
+}
 
-class ListComponent extends React.Component {
-
-
-  constructor(props){
-    super(props);
-    this.state = {
-      showCard: false,
-      resturantName: null,
-      resturantCategory: null
-    };
-
-    this.displayResturantCard = this.displayResturantCard.bind(this);
-  }
-
-    componentWillUnmount() {
-
-      this.setState((currentState) => ({
-        showCard: false
-      }));
-    }
-    
-      displayResturantCard(name, category){
-
-
-        this.setState((currentState) => ({
-          showCard: true,
-          resturantName: name,
-          resturantCategory: category
-
-          }));
-      }
-      
-      render(){
-
-       if (this.state.showCard){
-         return  <Fade up><ResturantCard restName={this.state.resturantName} restCat={this.state.resturantCategory}/></Fade>;
-       }
-
-      return (
-        <div>
-         {resturants ? resturants.filter(resturants => resturants.category === 'meats' || 'seafood' || 'dessert').map(resturant => {
-          
-          return (
-           <div class="resturant_item" key={resturant.index}>
-            <div class="overlay">
-             <div class="resturant_category"><p>{resturant.category}</p></div>
-             <div class="resturant_name"><p><a onClick={() => this.displayResturantCard()}>{resturant.name}</a></p></div>
-            </div>   
-           </div>
-           );
-          })
-          : "Loading..."}
-        </div>
-      );
-    }
-  }
-
-  class QuickRefine extends React.Component {
+/* Quick Refine Component: After list is generated, further and quickly add or take away more categories */
+class QuickRefine extends React.Component {
 
 
     constructor(props){
@@ -239,9 +199,62 @@ class ListComponent extends React.Component {
       </div>
       );
     }
+}
+
+/* Resturant List Component: Generated list of resturant choices */
+class ResturantList extends React.Component {
+
+
+  constructor(props){
+    super(props);
+    this.state = {
+      showCard: false,
+      resturantName: null,
+      resturantCategory: null
+    };
+
+    this.displayResturantCard = this.displayResturantCard.bind(this);
   }
 
-  class ResturantCard extends React.Component {
+    componentWillUnmount() {
+
+      this.setState((currentState) => ({
+        showCard: false
+      }));
+    }
+    
+      displayResturantCard(name, category){
+
+
+        this.setState((currentState) => ({
+          showCard: true,
+          resturantName: name,
+          resturantCategory: category
+
+          }));
+      }
+      
+      render(){
+
+  
+      return (
+        <div>
+         {this.props.resturants.map((resturant) =>
+          (
+           <div class="resturant_item">
+            <div class="overlay">
+             <div class="resturant_category"><p>{resturant.category}</p></div>
+             <div class="resturant_name"><p><a onClick={() => this.displayResturantCard()}>{resturant.name}</a></p></div>
+            </div>   
+           </div>
+           ))}  
+        </div>
+      );
+    }
+}
+
+/* Resturant Card Component: Generated card for restuant list */
+class ResturantCard extends React.Component {
 
     constructor(props){
       super(props);
@@ -261,7 +274,7 @@ class ListComponent extends React.Component {
     render(){
       
       if (this.state.cardClosed){
-        return <Fade><ListComponent /> </Fade>;
+        return <Fade><ResturantList resturants={this.props.resturants}/> </Fade>;
       }
 
       return (
@@ -285,6 +298,6 @@ class ListComponent extends React.Component {
         </div>
       );
     }
-  }
+}
 
 export default App;

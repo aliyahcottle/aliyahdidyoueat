@@ -73,6 +73,12 @@ button.quick_button{
   margin-left: 5rem;
 }
 
+.take-her-out{
+  width: 282px;
+  height: 144px;
+  background-image: url('images/datenight.svg');
+}
+
 .overlay{
     width: 288px;
     height: 151px;
