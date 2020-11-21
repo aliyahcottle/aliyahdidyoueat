@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Fade from 'react-reveal/Fade';
+import Popup from 'reactjs-popup';
 
 const RESTURANTS = [
   {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
@@ -47,7 +48,7 @@ class App extends React.Component {
 /* List View - Components include: Custom Refine, Quick Refine, Resturant List */
 class ListView extends React.Component {
     
-  render(){  
+render(){  
   return (
     <div class="list_view">
 
@@ -80,32 +81,35 @@ class CustomRefine extends React.Component {
       <p>Refine:</p>
 
       <select class="location-select">
-        <option value="0">Location:</option>
-        <option value="1">Brampton</option>
-        <option value="2">Mississauga</option>
-        <option value="3">Milton</option>
-        <option value="4">Oakville</option>
-        <option value="5">Niagara Region</option>
-        <option value="6">Toronto</option>
-        <option value="7">Scarbourough</option>
+        <option value="0">Location</option>
+        <option value="1">Any</option>
+        <option value="2">Brampton</option>
+        <option value="3">Mississauga</option>
+        <option value="4">Milton</option>
+        <option value="5">Oakville</option>
+        <option value="6">Niagara Region</option>
+        <option value="7">Toronto</option>
+        <option value="8">Scarbourough</option>
       </select>
 
 
       <select class="category-select">
-        <option value="0">Category:</option>
-        <option value="1">Meat</option>
-        <option value="2">Pizza</option>
-        <option value="3">Seafood</option>
-        <option value="4">Tacos</option>
-        <option value="5">Breakfast</option>
-        <option value="6">Drinks</option>
+        <option value="0">Category</option>
+        <option value="1">Any</option>
+        <option value="2">Meat</option>
+        <option value="3">Pizza</option>
+        <option value="4">Seafood</option>
+        <option value="5">Tacos</option>
+        <option value="6">Breakfast</option>
+        <option value="7">Drinks</option>
       </select>
 
       <select class="price-select">
-        <option value="0">Price Range:</option>
-        <option value="1">$</option>
-        <option value="2">$$</option>
-        <option value="3">$$$</option>
+        <option value="0">Price Range</option>
+        <option value="1">Any</option>
+        <option value="2">$</option>
+        <option value="3">$$</option>
+        <option value="4">$$$</option>
       </select>
       
     </div>
@@ -208,35 +212,18 @@ class ResturantList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      showCard: false,
-      resturantName: null,
-      resturantCategory: null
+      show: false
     };
-
-    this.displayResturantCard = this.displayResturantCard.bind(this);
+  }
+  
+  showModal = () =>{
+    this.setState({ show: true});
   }
 
-    componentWillUnmount() {
-
-      this.setState((currentState) => ({
-        showCard: false
-      }));
-    }
-    
-      displayResturantCard(name, category){
-
-
-        this.setState((currentState) => ({
-          showCard: true,
-          resturantName: name,
-          resturantCategory: category
-
-          }));
-      }
-      
+  hideModal = () => {
+    this.setState({ show: false});
+  }
       render(){
-
-  
       return (
         <div>
          {this.props.resturants.map((resturant) =>
@@ -244,7 +231,10 @@ class ResturantList extends React.Component {
            <div class="resturant_item">
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
-             <div class="resturant_name"><p><a onClick={() => this.displayResturantCard()}>{resturant.name}</a></p></div>
+             <div class="resturant_name"><p><a onClick={this.showModal}>{resturant.name}</a></p></div>
+              
+             <ResturantCard show={this.state.show} handleClose={this.hideModal} children={this.props.resturants}></ResturantCard>
+
             </div>   
            </div>
            ))}  
@@ -254,50 +244,31 @@ class ResturantList extends React.Component {
 }
 
 /* Resturant Card Component: Generated card for restuant list */
-class ResturantCard extends React.Component {
+const ResturantCard = ({ handleClose, show, children}) => {
+   const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
-    constructor(props){
-      super(props);
-      this.state = {
-        cardClosed: false
-      };
-
-      this.closeCard = this.closeCard.bind(this);
-    }
-
-    closeCard(){
-      this.setState((currentState) => ({
-        cardClosed: true
-        }));
-    }
-
-    render(){
-      
-      if (this.state.cardClosed){
-        return <Fade><ResturantList resturants={this.props.resturants}/> </Fade>;
-      }
-
-      return (
-        <div class="resturant_card">
+   return (
+     
+    <div class={showHideClassName}>
           
-          <div class="close_window"><button onClick={this.closeCard}>X</button></div>
-
-          <div class="resturant_details">
-
-         <h1>{this.state.resturantName}</h1>
-            <h3>Category</h3>
-            <p>Aliyah's take: here I put the information that I would want my date or 
-              friends to hear about this place and my fav things about it</p>
-            <p>Website</p>
-            <p>Embed map here</p>
-
-            <button>Date?</button>
-
+            <div class="close_window"><button onClick={handleClose}>X</button></div>
+  
+            <div class="resturant_details">
+  
+           <h1>Resturant Name</h1>
+              <h3>Category</h3>
+              <p>Aliyah's take: here I put the information that I would want my date or 
+                friends to hear about this place and my fav things about it</p>
+              <p>Website</p>
+              <p>Embed map here</p>
+  
+              <button>Date?</button>
+  
+            </div>
+            
           </div>
-          
-        </div>
-      );
-    }
+   );
 }
+
 
 export default App;
