@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Fade from 'react-reveal/Fade';
 import Popup from 'reactjs-popup';
+import {CSSTransition} from 'react-transition-group';
 
 const RESTURANTS = [
   {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
@@ -232,13 +233,14 @@ class ResturantList extends React.Component {
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
              <div class="resturant_name"><p><a onClick={this.showModal}>{resturant.name}</a></p></div>
-              
-             <ResturantCard show={this.state.show} handleClose={this.hideModal} children={this.props.resturants}></ResturantCard>
-
             </div>   
            </div>
            ))}  
+
+           <ResturantCard show={this.state.show} handleClose={this.hideModal} children={this.props.resturants}></ResturantCard>
         </div>
+
+        
       );
     }
 }
@@ -248,6 +250,12 @@ const ResturantCard = ({ handleClose, show, children}) => {
    const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
    return (
+
+    <CSSTransition
+    in={show}
+    timeout={300}
+    classNames="alert">
+ 
      
     <div class={showHideClassName}>
           
@@ -267,6 +275,9 @@ const ResturantCard = ({ handleClose, show, children}) => {
             </div>
             
           </div>
+
+          </CSSTransition>
+
    );
 }
 

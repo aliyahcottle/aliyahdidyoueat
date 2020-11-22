@@ -40,11 +40,14 @@ i{
 button.quick_button{
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: .6rem;
   border-radius: 50%;
   margin: 0.2rem;
   background: rgba(0, 0, 0, 0.5);
   border: 0;
+  height: 55px;
+  width: 55px;
 }
 
 .meat-on, .pizza-on, .seafood-on, .tacos-on, .breakfast-on, .drinks-on{
@@ -88,7 +91,7 @@ button.quick_button{
     justify-content: center;
     background: rgba(0, 0, 0, 0.5);
     z-index: 2;
-  
+    border-radius: 8px;
 }
 
 .resturant_category{
@@ -180,6 +183,7 @@ justify-content: flex-start;
   width:100%;
   height: 100%;
   background:white;
+  
 }
 
 .modal-main {
@@ -194,8 +198,28 @@ justify-content: flex-start;
 
 .display-block {
   display: block;
+  transition: background-color 0.5s ease;
 }
 
 .display-none {
   display: none;
 }
+
+.alert-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.alert-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
