@@ -4,26 +4,27 @@ import Fade from 'react-reveal/Fade';
 import {CSSTransition} from 'react-transition-group';
 
 const RESTURANTS = [
-  {"id": 1, "name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
-  {"id": 2, "name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
-  {"id": 3, "name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
-  {"id": 4, "name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
-  {"id": 5, "name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
-  {"id": 6, "name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
-  {"id": 7, "name": "The Captain's Boil", "category": "seafood", "website": "https://thecaptainsboil.com/locations/", "bg-pic": "" },
-  {"id": 8, "name": "Goodfellas Wood Stove Pizza", "category": "pizza", "website": "", "bg-pic": "" },
-  {"id": 9, "name": "Papa Giuseppes", "category": "pizza", "website": "", "bg-pic": "" },
-  {"id": 10, "name": "KyKy Kookies", "category": "dessert", "website": "https://www.kykykookies.com/", "bg-pic": "" },
-  {"id": 11, "name": "Holy Shakes", "category": "food-truck", "website": "https://416-food-truck-company.square.site/", "bg-pic": "" },
-  {"id": 12, "name": "August 8", "category": "seafood", "website": "http://august8.ca/", "bg-pic": "" },
-  {"id": 13, "name": "Kaka", "category": "seafood", "website": "http://kakaallyoucaneat.ca/", "bg-pic": "" },
-  {"id": 14, "name": "Barsa", "category": "tapas", "website": "https://barsataberna.com/", "bg-pic": "" },
+  {"id": 1, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
+  {"id": 2, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
+  {"id": 3, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
+  {"id": 4, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
+  {"id": 5, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
+  {"id": 6, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
+  {"id": 7, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "The Captain's Boil", "category": "seafood", "website": "https://thecaptainsboil.com/locations/", "bg-pic": "" },
+  {"id": 8, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Goodfellas Wood Stove Pizza", "category": "pizza", "website": "", "bg-pic": "" },
+  {"id": 9, "description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it", "name": "Papa Giuseppes", "category": "pizza", "website": "", "bg-pic": "" },
+  {"id": 10,"description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it",  "name": "KyKy Kookies", "category": "dessert", "website": "https://www.kykykookies.com/", "bg-pic": "" },
+  {"id": 11,"description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it",  "name": "Holy Shakes", "category": "food-truck", "website": "https://416-food-truck-company.square.site/", "bg-pic": "" },
+  {"id": 12,"description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it",  "name": "August 8", "category": "seafood", "website": "http://august8.ca/", "bg-pic": "" },
+  {"id": 13,"description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it",  "name": "Kaka", "category": "seafood", "website": "http://kakaallyoucaneat.ca/", "bg-pic": "" },
+  {"id": 14,"description": "Aliyah's take: here I put the information that I would want my date or friends to hear about this place and my fav things about it",  "name": "Barsa", "category": "tapas", "website": "https://barsataberna.com/", "bg-pic": "" },
   
 ]; 
 
 
 /* Aliyah, Did You Eat Entry Point */
 class App extends React.Component {
+  
 
   render(){
     return (
@@ -212,13 +213,25 @@ class ResturantList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      show: false
+      show: false, // determines weather resturant card shows
+      currentName: '', // current resturant name
+      currentCategory: '', // current resturant category
+      currentWebsite: '', // current resturant website
+      currentTake: '', // current resturant Aliyahs take
+      currentBg: '', // currrent resturant background picture
+      currentLocation: '' // current resturant location
     };
   }
 
 
-  showModal = () =>{
-    this.setState({ show: true});
+  showModal = (name, category, website, description) =>{
+    this.setState({ show: true, 
+                    currentName: name, 
+                    currentCategory: category,
+                    currentWebsite: website,
+                    currentTake: description
+                  });
+
     
   }
 
@@ -234,14 +247,28 @@ class ResturantList extends React.Component {
            <div class="resturant_item" key={index}>
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
-             <div class="resturant_name"><p><a onClick={(resturant) => this.showModal(resturant)}>{resturant.name}</a></p></div>
+             <div class="resturant_name">
+               <p>
+                 <a onClick={(e) => this.showModal(resturant.name, 
+                                                   resturant.category,
+                                                   resturant.website,
+                                                   resturant.description)}>{resturant.name}</a>
+                 </p>
+              </div>
             </div>   
            </div>
 
          
            ))}  
 
-            <ResturantCard show={this.state.show} handleClose={this.hideModal} children={this.props.resturants}></ResturantCard>        
+            <ResturantCard 
+                show={this.state.show} 
+                handleClose={this.hideModal} 
+                resturantName={this.state.currentName}
+                resturantCategory={this.state.currentCategory}
+                resturantURL={this.state.currentWebsite}
+                resturantDescription={this.state.currentTake}>
+            </ResturantCard>        
         </div>
 
         
@@ -250,7 +277,7 @@ class ResturantList extends React.Component {
 }
 
 /* Resturant Card Component: Generated card for restuant list */
-const ResturantCard = ({ handleClose, show, children}) => {
+const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription}) => {
    const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
    return (
@@ -263,21 +290,22 @@ const ResturantCard = ({ handleClose, show, children}) => {
      
       <div class={showHideClassName}>
           
-        <div class="close_window"><button onClick={handleClose}>X</button></div>
-    
+        <div class="close_window"><button onClick={handleClose}>X</button></div>   
           <div class="resturant_details">
-  
-           <h1>Resturant Name</h1>
-              <h3>Category</h3>
-              <p>Aliyah's take: here I put the information that I would want my date or 
-                friends to hear about this place and my fav things about it</p>
-              <p>Website</p>
-              <p>Embed map here</p>
-  
-              <button>Date?</button>
-  
-          </div>
+               <h1>{resturantName}</h1>
+               <h3>{resturantCategory}</h3>
+
+               <p>{resturantDescription}</p>
             
+               <a href={resturantURL} target="_blank">{resturantName}</a>
+               
+               <div id="map"></div>
+
+              <div class="resturant_buttons">
+                 <button>Text Aliyah</button>
+                 <button>Book Table</button>
+              </div>
+          </div>            
       </div>
 
     </CSSTransition>
