@@ -1,24 +1,23 @@
 import React from 'react';
 import './App.css';
 import Fade from 'react-reveal/Fade';
-import Popup from 'reactjs-popup';
 import {CSSTransition} from 'react-transition-group';
 
 const RESTURANTS = [
-  {"name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
-  {"name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
-  {"name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
-  {"name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
-  {"name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
-  {"name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
-  {"name": "The Captain's Boil", "category": "seafood", "website": "https://thecaptainsboil.com/locations/", "bg-pic": "" },
-  {"name": "Goodfellas Wood Stove Pizza", "category": "pizza", "website": "", "bg-pic": "" },
-  {"name": "Papa Giuseppes", "category": "pizza", "website": "", "bg-pic": "" },
-  {"name": "KyKy Kookies", "category": "dessert", "website": "https://www.kykykookies.com/", "bg-pic": "" },
-  {"name": "Holy Shakes", "category": "food-truck", "website": "https://416-food-truck-company.square.site/", "bg-pic": "" },
-  {"name": "August 8", "category": "seafood", "website": "http://august8.ca/", "bg-pic": "" },
-  {"name": "Kaka", "category": "seafood", "website": "http://kakaallyoucaneat.ca/", "bg-pic": "" },
-  {"name": "Barsa", "category": "tapas", "website": "https://barsataberna.com/", "bg-pic": "" },
+  {"id": 1, "name": "Cabanos", "category": "meats", "website": "http://cabanos.ca", "bg-pic": "" },
+  {"id": 2, "name": "Chica's Nashville Hot Chicken", "category": "meats", "website": "https://www.chicaschicken.net/order/", "bg-pic": "" },
+  {"id": 3, "name": "Kansas King", "category": "meats", "website": "https://www.kansasking.com/menus", "bg-pic": "" },
+  {"id": 4, "name": "XXI Chophouse", "category": "meats", "website": "https://www.xxichophouse.com/dinner", "bg-pic": "" },
+  {"id": 5, "name": "Wow! Wing House", "category": "meats", "website": "http://www.wowwinghouse.com/morningside-milner/", "bg-pic": "" },
+  {"id": 6, "name": "Top Gun Burger", "category": "meats", "website": "http://www.topgunburgerto.com/menu/", "bg-pic": "" },
+  {"id": 7, "name": "The Captain's Boil", "category": "seafood", "website": "https://thecaptainsboil.com/locations/", "bg-pic": "" },
+  {"id": 8, "name": "Goodfellas Wood Stove Pizza", "category": "pizza", "website": "", "bg-pic": "" },
+  {"id": 9, "name": "Papa Giuseppes", "category": "pizza", "website": "", "bg-pic": "" },
+  {"id": 10, "name": "KyKy Kookies", "category": "dessert", "website": "https://www.kykykookies.com/", "bg-pic": "" },
+  {"id": 11, "name": "Holy Shakes", "category": "food-truck", "website": "https://416-food-truck-company.square.site/", "bg-pic": "" },
+  {"id": 12, "name": "August 8", "category": "seafood", "website": "http://august8.ca/", "bg-pic": "" },
+  {"id": 13, "name": "Kaka", "category": "seafood", "website": "http://kakaallyoucaneat.ca/", "bg-pic": "" },
+  {"id": 14, "name": "Barsa", "category": "tapas", "website": "https://barsataberna.com/", "bg-pic": "" },
   
 ]; 
 
@@ -216,9 +215,11 @@ class ResturantList extends React.Component {
       show: false
     };
   }
-  
+
+
   showModal = () =>{
     this.setState({ show: true});
+    
   }
 
   hideModal = () => {
@@ -227,17 +228,20 @@ class ResturantList extends React.Component {
       render(){
       return (
         <div>
-         {this.props.resturants.map((resturant) =>
+        
+         {this.props.resturants.map((resturant, index) =>
           (
-           <div class="resturant_item">
+           <div class="resturant_item" key={index}>
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
-             <div class="resturant_name"><p><a onClick={this.showModal}>{resturant.name}</a></p></div>
+             <div class="resturant_name"><p><a onClick={(resturant) => this.showModal(resturant)}>{resturant.name}</a></p></div>
             </div>   
            </div>
+
+         
            ))}  
 
-           <ResturantCard show={this.state.show} handleClose={this.hideModal} children={this.props.resturants}></ResturantCard>
+            <ResturantCard show={this.state.show} handleClose={this.hideModal} children={this.props.resturants}></ResturantCard>        
         </div>
 
         
@@ -257,11 +261,11 @@ const ResturantCard = ({ handleClose, show, children}) => {
     classNames="alert">
  
      
-    <div class={showHideClassName}>
+      <div class={showHideClassName}>
           
-            <div class="close_window"><button onClick={handleClose}>X</button></div>
-  
-            <div class="resturant_details">
+        <div class="close_window"><button onClick={handleClose}>X</button></div>
+    
+          <div class="resturant_details">
   
            <h1>Resturant Name</h1>
               <h3>Category</h3>
@@ -272,11 +276,11 @@ const ResturantCard = ({ handleClose, show, children}) => {
   
               <button>Date?</button>
   
-            </div>
-            
           </div>
+            
+      </div>
 
-          </CSSTransition>
+    </CSSTransition>
 
    );
 }
