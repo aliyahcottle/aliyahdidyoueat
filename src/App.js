@@ -3,10 +3,11 @@ import './App.css';
 import Fade from 'react-reveal/Fade';
 import {CSSTransition} from 'react-transition-group';
 import {resturantData} from './resturants';
+import GoogleMap from 'google-map-react';
+
 
 /* Aliyah, Did You Eat Entry Point */
 class App extends React.Component {
-  
 
   render(){
     return (
@@ -59,6 +60,7 @@ class CustomRefine extends React.Component {
 
   render(){
     return (
+    <div id="top">
       <div class="custom-select">
 
       <p>Refine:</p>
@@ -95,6 +97,7 @@ class CustomRefine extends React.Component {
         <option value="4">$$$</option>
       </select>
       
+      </div>
     </div>
 
 
@@ -116,6 +119,8 @@ class QuickRefine extends React.Component {
         breakfastCategory: false,
         drinksCategory: false
       };
+
+      this.ToggleCategory = this.ToggleCategory.bind;
     }
 
     ToggleCategory(category){
@@ -156,6 +161,9 @@ class QuickRefine extends React.Component {
         drinksCategory: !currentState.drinksCategory,
         }));
         break;
+
+        default:
+          break;
 
      }  
    }
@@ -201,10 +209,14 @@ class ResturantList extends React.Component {
       currentWebsite: '', // current resturant website
       currentTake: '', // current resturant Aliyahs take
       currentBg: '', // currrent resturant background picture
-      currentLocation: '' // current resturant location
-    };
-  }
-
+      currentLocation: '', // current resturant location
+      center: {
+        lat: 59.95,
+        lng: 30.33
+      },
+      zoom: 11
+    }; 
+  };
 
   showModal = (name, category, website, description) =>{
     this.setState({ show: true, 
@@ -212,9 +224,7 @@ class ResturantList extends React.Component {
                     currentCategory: category,
                     currentWebsite: website,
                     currentTake: description
-                  });
-
-    
+                  });   
   }
 
   hideModal = () => {
@@ -231,10 +241,11 @@ class ResturantList extends React.Component {
              <div class="resturant_category"><p>{resturant.category}</p></div>
              <div class="resturant_name">
                <p>
-                 <a onClick={(e) => this.showModal(resturant.name, 
-                                                   resturant.category,
-                                                   resturant.website,
-                                                   resturant.description)}>{resturant.name}</a>
+                 <a href="#top" onClick={(e) => 
+                    this.showModal(resturant.name, 
+                                   resturant.category,
+                                   resturant.website,
+                                   resturant.description)}>{resturant.name}</a>
                  </p>
               </div>
             </div>   
@@ -249,7 +260,8 @@ class ResturantList extends React.Component {
                 resturantName={this.state.currentName}
                 resturantCategory={this.state.currentCategory}
                 resturantURL={this.state.currentWebsite}
-                resturantDescription={this.state.currentTake}>
+                resturantDescription={this.state.currentTake}
+                center={this.state.center}>
             </ResturantCard>        
         </div>
 
@@ -259,7 +271,7 @@ class ResturantList extends React.Component {
 }
 
 /* Resturant Card Component: Generated card for restuant list */
-const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription}) => {
+const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription, center}) => {
    const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
    return (
@@ -272,14 +284,25 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
      
       <div class={showHideClassName}>
           
-        <div class="close_window"><button onClick={handleClose}>X</button></div>   
+        <div class="close_window"><button onClick={handleClose}>X</button></div>
+
+      <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMap
+        apiKey='AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'
+        center={center}
+        zoom='11'>
+      </GoogleMap>
+      </div>
+
+
+
           <div class="resturant_details">
                <h1>{resturantName}</h1>
                <h3>{resturantCategory}</h3>
 
                <p>{resturantDescription}</p>
             
-               <a href={resturantURL} target="_blank">{resturantName}</a>
+               <a href={resturantURL} target="_blank" rel="noreferrer">{resturantName}</a>
                
                <div id="map"></div>
 

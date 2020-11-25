@@ -5,6 +5,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.11.1",
     "express": "^4.17.1",
+    "google-map-react": "^2.1.9",
     "google-maps-react": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
