@@ -287,35 +287,44 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
     classNames="alert">
  
      
-      <div class={showHideClassName}>
-          
-        <div class="close_window"><a href={lastResturant} onClick={handleClose}><button>X</button></a></div>
+    <div class={showHideClassName}>
 
-      <div style={{ height: '100vh', width: '100%' }}>
-      <GoogleMap
-        bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
-        defaultCenter={location}
-        zoom={11}>
-      </GoogleMap>
+      <div class="map_section">
+
+        <div class="map" style={{ height: '100vh', width: '74%' }}>
+          <GoogleMap
+            bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
+            defaultCenter={location}
+            zoom={11}>
+          </GoogleMap>
+        </div>
+
+        <div class="resturant_details">
+              
+               <a class="exit" href={lastResturant} onClick={handleClose}><button>X</button></a>
+
+               <div class="detail_container">
+
+                <h1>{resturantName}</h1>
+                <h3>{resturantCategory}</h3>
+
+                <p>{resturantDescription}</p>
+              
+                <a href={resturantURL} target="_blank" rel="noreferrer">{resturantName}</a>
+                
+                <div id="map"></div>
+
+                <div class="resturant_buttons">
+                  <button>Text Aliyah</button>
+                  <button>Book Table</button>
+                </div>
+
+              </div>
+          </div>  
       </div>
 
 
-
-          <div class="resturant_details">
-               <h1>{resturantName}</h1>
-               <h3>{resturantCategory}</h3>
-
-               <p>{resturantDescription}</p>
-            
-               <a href={resturantURL} target="_blank" rel="noreferrer">{resturantName}</a>
-               
-               <div id="map"></div>
-
-              <div class="resturant_buttons">
-                 <button>Text Aliyah</button>
-                 <button>Book Table</button>
-              </div>
-          </div>            
+          
       </div>
 
     </CSSTransition>

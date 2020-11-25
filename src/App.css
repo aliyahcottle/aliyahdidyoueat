@@ -223,3 +223,34 @@ justify-content: flex-start;
   transition: opacity 300ms, transform 300ms;
 }
 
+.map{
+  width: 50vw;
+}
+
+.map_section{
+  height: 100vh;
+  background: white;
+  display: flex;
+  position: fixed;
+  top: 0;
+}
+
+.resturant_details{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 50%;
+}
+
+.resturant_details h1{
+  margin: 0px;
+  margin-top: 2rem;
+}
+
+.exit{
+  text-align: right;
+}
+
+.detail_container{
+  margin: 1rem;
+}
