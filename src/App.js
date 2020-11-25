@@ -209,21 +209,22 @@ class ResturantList extends React.Component {
       currentWebsite: '', // current resturant website
       currentTake: '', // current resturant Aliyahs take
       currentBg: '', // currrent resturant background picture
-      currentLocation: '', // current resturant location
-      center: {
-        lat: 59.95,
-        lng: 30.33
+      location: {  // current resturant location
+        lat: 37.42216,
+        lng: -122.08427
       },
-      zoom: 11
+      lastResturant: '', // scroll down to the last resturant last clicked on
     }; 
   };
 
-  showModal = (name, category, website, description) =>{
+  showModal = (id, name, category, website, description, newLocation) =>{
     this.setState({ show: true, 
                     currentName: name, 
                     currentCategory: category,
                     currentWebsite: website,
-                    currentTake: description
+                    currentTake: description,
+                    location: newLocation,
+                    lastResturant: '#' + id
                   });   
   }
 
@@ -236,20 +237,23 @@ class ResturantList extends React.Component {
         
          {this.props.resturants.map((resturant, index) =>
           (
-           <div class="resturant_item" key={index}>
+          <div id={resturant.id} key={index}>
+           <div class="resturant_item">
             <div class="overlay">
              <div class="resturant_category"><p>{resturant.category}</p></div>
              <div class="resturant_name">
                <p>
                  <a href="#top" onClick={(e) => 
-                    this.showModal(resturant.name, 
+                    this.showModal(resturant.id,
+                                   resturant.name, 
                                    resturant.category,
                                    resturant.website,
-                                   resturant.description)}>{resturant.name}</a>
+                                   resturant.description, resturant.location)}>{resturant.name}</a>
                  </p>
               </div>
             </div>   
            </div>
+          </div>
 
          
            ))}  
@@ -261,7 +265,8 @@ class ResturantList extends React.Component {
                 resturantCategory={this.state.currentCategory}
                 resturantURL={this.state.currentWebsite}
                 resturantDescription={this.state.currentTake}
-                center={this.state.center}>
+                location={this.state.location}
+                lastResturant={this.state.lastResturant}>
             </ResturantCard>        
         </div>
 
@@ -271,7 +276,7 @@ class ResturantList extends React.Component {
 }
 
 /* Resturant Card Component: Generated card for restuant list */
-const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription, center}) => {
+const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription, location, lastResturant}) => {
    const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
    return (
@@ -284,13 +289,13 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
      
       <div class={showHideClassName}>
           
-        <div class="close_window"><button onClick={handleClose}>X</button></div>
+        <div class="close_window"><a href={lastResturant} onClick={handleClose}><button>X</button></a></div>
 
       <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMap
-        apiKey='AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'
-        center={center}
-        zoom='11'>
+        bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
+        defaultCenter={location}
+        zoom={11}>
       </GoogleMap>
       </div>
 

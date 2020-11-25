@@ -7,7 +7,10 @@ export const resturantData = [
         "website": "http://cabanos.ca", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": {
+            "lat": 59.95,
+            "lng": 30.33
+        } 
     },
     {
         "id": 2, 
