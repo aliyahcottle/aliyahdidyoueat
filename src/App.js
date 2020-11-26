@@ -56,46 +56,70 @@ render(){
 /* Custom Refine Component: Refine by Location, Category or Price Range */
 class CustomRefine extends React.Component {
 
+  constructor(props){
+
+    super(props);
+    this.state = {
+      refineLocation: 'all',  // refine location state. default: all
+      refineCategory: 'all', // refine category state. default: all
+      refinePrice: '$' // refine price state. default: $
+    };
+
+    this.handleChangeLocation = this.handleChangeLocation.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleChangePrice = this.handleChangePrice.bind(this);
+
+
+
+  }
+  
+  handleChangeLocation(e){this.setState({refineLocation: e.target.value});}
+  handleChangeCategory(e){this.setState({refineCategory: e.target.value});}
+  handleChangePrice(e){this.setState({refinePrice: e.target.value});}
+
+
   render(){
+
     return (
     <div id="top">
       <div class="custom-select">
 
       <p>Refine:</p>
-
-      <select class="location-select">
-        <option value="0">Location</option>
-        <option value="1">Any</option>
-        <option value="2">Brampton</option>
-        <option value="3">Mississauga</option>
-        <option value="4">Milton</option>
-        <option value="5">Oakville</option>
-        <option value="6">Niagara Region</option>
-        <option value="7">Toronto</option>
-        <option value="8">Scarbourough</option>
+      <label for="location-select">Location</label>
+      <select name="location-select" class="location-select" onChange={this.handleChangeLocation} value={this.state.refineLocation}>
+        <option value="all">Any</option>
+        <option value="brampton">Brampton</option>
+        <option value="mississauga">Mississauga</option>
+        <option value="milton">Milton</option>
+        <option value="oakville">Oakville</option>
+        <option value="niagara">Niagara Region</option>
+        <option value="toronto">Toronto</option>
+        <option value="scarbourough">Scarbourough</option>
       </select>
 
 
-      <select class="category-select">
-        <option value="0">Category</option>
-        <option value="1">Any</option>
-        <option value="2">Meat</option>
-        <option value="3">Pizza</option>
-        <option value="4">Seafood</option>
-        <option value="5">Tacos</option>
-        <option value="6">Breakfast</option>
-        <option value="7">Drinks</option>
+      <label for="category-select">Category</label>
+      <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={this.state.refineCategory}>
+        <option value="all">Any</option>
+        <option value="meat">Meat</option>
+        <option value="pizza">Pizza</option>
+        <option value="seafood">Seafood</option>
+        <option value="tacos">Tacos</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="drinks">Drinks</option>
       </select>
 
-      <select class="price-select">
-        <option value="0">Price Range</option>
-        <option value="1">Any</option>
-        <option value="2">$</option>
-        <option value="3">$$</option>
-        <option value="4">$$$</option>
+
+      <label for="price-select">Price</label>
+      <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={this.state.refinePrice}>
+        <option value="all">Any</option>
+        <option value="$">$</option>
+        <option value="$$">$$</option>
+        <option value="$$$">$$$</option>
       </select>
       
       </div>
+      
     </div>
 
 
