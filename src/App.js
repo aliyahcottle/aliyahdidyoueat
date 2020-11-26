@@ -118,7 +118,7 @@ class QuickRefine extends React.Component {
         drinksCategory: false
       };
 
-      this.ToggleCategory = this.ToggleCategory.bind;
+      this.ToggleCategory = this.ToggleCategory.bind(this);
     }
 
     ToggleCategory(category){
@@ -275,7 +275,8 @@ class ResturantList extends React.Component {
 
 /* Resturant Card Component: Generated card for restuant list */
 const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription, location, lastResturant}) => {
-   const showHideClassName = show ? 'modal display-block': 'modal display-none';
+   
+  const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
    return (
 
@@ -289,7 +290,7 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
 
       <div class="map_section">
 
-        <div class="map" style={{ height: '100vh', width: '74%' }}>
+        <div class="map" style={{ height: '100vh', width: '100vw' }}>
           <GoogleMap
             bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
             defaultCenter={location}
