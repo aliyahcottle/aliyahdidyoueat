@@ -31,19 +31,41 @@ class App extends React.Component {
 
 /* List View - Components include: Custom Refine, Quick Refine, Resturant List */
 class ListView extends React.Component {
+
+constructor(props){
+  super(props);
+  this.state = {
+    refineLocation: 'mississauga',  // refine location state. default: all
+    refineCategory: 'all', // refine category state. default: all
+    refinePrice: "$" // refine price state. default: $
+  };
+
+  this.handleChangeLocation = this.handleChangeLocation.bind(this);
+  this.handleChangeCategory = this.handleChangeCategory.bind(this);
+  this.handleChangePrice = this.handleChangePrice.bind(this);
+}
+
+handleChangeLocation(location){this.setState({refineLocation: location});}
+
+handleChangeCategory(category){this.setState({refineCategory: category});}
+
+handleChangePrice(price){this.setState({refinePrice: price});}
     
 render(){  
   return (
     <div class="list_view">
 
-     <CustomRefine />
+     <CustomRefine onRefineLocation={this.handleChangeLocation}
+                   onRefineCategory={this.handleChangeCategory} 
+                   onRefinePrice={this.handleChangePrice}
+                   location={this.state.refineLocation}/>
 
       <div class="show-list">
 
-        <QuickRefine />
+        <QuickRefine/>
       
           <Fade left>
-            <ResturantList resturants={this.props.resturants} />
+            <ResturantList resturants={this.props.resturants} refineLocation={this.state.refineLocation} />
           </Fade>
 
        </div>
@@ -57,28 +79,21 @@ render(){
 class CustomRefine extends React.Component {
 
   constructor(props){
-
     super(props);
-    this.state = {
-      refineLocation: 'all',  // refine location state. default: all
-      refineCategory: 'all', // refine category state. default: all
-      refinePrice: '$' // refine price state. default: $
-    };
-
     this.handleChangeLocation = this.handleChangeLocation.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.handleChangePrice = this.handleChangePrice.bind(this);
 
-
-
   }
   
-  handleChangeLocation(e){this.setState({refineLocation: e.target.value});}
-  handleChangeCategory(e){this.setState({refineCategory: e.target.value});}
-  handleChangePrice(e){this.setState({refinePrice: e.target.value});}
+  handleChangeLocation(e){this.props.onRefineLocation(e.target.value);}
+  handleChangeCategory(e){this.props.onRefineCategory(e.target.value);}
+  handleChangePrice(e){this.props.onRefinePrice(e.target.value);}
 
 
   render(){
+
+    const location = this.props.location;
 
     return (
     <div id="top">
@@ -86,7 +101,7 @@ class CustomRefine extends React.Component {
 
       <p>Refine:</p>
       <label for="location-select">Location</label>
-      <select name="location-select" class="location-select" onChange={this.handleChangeLocation} value={this.state.refineLocation}>
+      <select name="location-select" class="location-select" onChange={this.handleChangeLocation} value={location}>
         <option value="all">Any</option>
         <option value="brampton">Brampton</option>
         <option value="mississauga">Mississauga</option>
@@ -99,7 +114,7 @@ class CustomRefine extends React.Component {
 
 
       <label for="category-select">Category</label>
-      <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={this.state.refineCategory}>
+      <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={this.props.refineCategory}>
         <option value="all">Any</option>
         <option value="meat">Meat</option>
         <option value="pizza">Pizza</option>
@@ -111,7 +126,7 @@ class CustomRefine extends React.Component {
 
 
       <label for="price-select">Price</label>
-      <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={this.state.refinePrice}>
+      <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={this.props.refinePrice}>
         <option value="all">Any</option>
         <option value="$">$</option>
         <option value="$$">$$</option>
@@ -231,13 +246,10 @@ class ResturantList extends React.Component {
       currentWebsite: '', // current resturant website
       currentTake: '', // current resturant Aliyahs take
       currentBg: '', // currrent resturant background picture
-      location: {  // current resturant location
-        lat: 37.42216,
-        lng: -122.08427
-      },
       lastResturant: '', // scroll down to the last resturant last clicked on
     }; 
   };
+
 
   showModal = (id, name, category, website, description, newLocation) =>{
     this.setState({ show: true, 
@@ -254,10 +266,14 @@ class ResturantList extends React.Component {
     this.setState({ show: false});
   }
       render(){
+
+      const location = this.props.refineLocation;
+      console.log(location);
+
       return (
         <div>
         
-         {this.props.resturants.map((resturant, index) =>
+         {this.props.resturants.filter((resturant) => this.props.refineLocation === resturant.location).map((resturant, index) =>
           (
           <div id={resturant.id} key={index}>
            <div class="resturant_item">

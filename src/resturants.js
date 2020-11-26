@@ -7,10 +7,7 @@ export const resturantData = [
         "website": "http://cabanos.ca", 
         "bg-pic": "", 
         "phone": "",
-        "location": {
-            "lat": 59.95,
-            "lng": 30.33
-        } 
+        "location": "mississauga"
     },
     {
         "id": 2, 
@@ -20,7 +17,7 @@ export const resturantData = [
         "website": "https://www.chicaschicken.net/order/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "toronto", 
     },
     {
         "id": 3, 
@@ -30,7 +27,7 @@ export const resturantData = [
         "website": "https://www.kansasking.com/menus", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "brampton", 
     },
     {   
         "id": 4, 
@@ -40,7 +37,7 @@ export const resturantData = [
         "website": "https://www.xxichophouse.com/dinner", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "hamilton", 
     },
     {
         "id": 5, 
@@ -50,7 +47,7 @@ export const resturantData = [
         "website": "http://www.wowwinghouse.com/morningside-milner/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "niagara", 
     },
     {
         "id": 6, 
@@ -60,7 +57,7 @@ export const resturantData = [
         "website": "http://www.topgunburgerto.com/menu/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "mississauga", 
     },
     {
         "id": 7, 
@@ -70,7 +67,7 @@ export const resturantData = [
         "website": "https://thecaptainsboil.com/locations/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "toronto", 
     },
     {
         "id": 8, 
@@ -80,7 +77,7 @@ export const resturantData = [
         "website": "", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "mississauga", 
     },
     {
         "id": 9, 
@@ -90,7 +87,7 @@ export const resturantData = [
         "website": "", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "niagara", 
     },
     {
         "id": 10,
@@ -100,7 +97,7 @@ export const resturantData = [
         "website": "https://www.kykykookies.com/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "toronto", 
     },
     {
         "id": 11,
@@ -110,7 +107,7 @@ export const resturantData = [
         "website": "https://416-food-truck-company.square.site/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "hamilton", 
     },
     {
         "id": 12,
@@ -120,7 +117,7 @@ export const resturantData = [
         "website": "http://august8.ca/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "scarbourough", 
     },
     {
         "id": 13,
@@ -130,7 +127,7 @@ export const resturantData = [
         "website": "http://kakaallyoucaneat.ca/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "oakville", 
     },
     {
         "id": 14,
@@ -140,6 +137,6 @@ export const resturantData = [
         "website": "https://barsataberna.com/", 
         "bg-pic": "", 
         "phone": "",
-        "location": "", 
+        "location": "toronto", 
     }   
 ]; 
