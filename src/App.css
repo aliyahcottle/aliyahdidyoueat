@@ -5,10 +5,10 @@
 
 .container{
   background-image: url('images/Background.svg');
+  background-repeat: repeat;
   margin: 0px;
   padding: 0px;
   width: 100vw;
-  height: 100vh;
 }
 
 .container h1{
@@ -155,7 +155,7 @@ footer{
   background-color: black;
   color: white;
   padding: 1rem;
-  position: absolute;
+  position: relative;
   bottom: 0px;
   width: 100%;
 }
@@ -178,6 +178,7 @@ justify-content: flex-start;
 
 .show-list{
   display: flex;
+  height: 100vh;
 }
 
 /*  TO DO List
