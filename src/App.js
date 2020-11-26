@@ -58,7 +58,9 @@ render(){
      <CustomRefine onRefineLocation={this.handleChangeLocation}
                    onRefineCategory={this.handleChangeCategory} 
                    onRefinePrice={this.handleChangePrice}
-                   location={this.state.refineLocation}/>
+                   location={this.state.refineLocation}
+                   category={this.state.refineCategory}
+                   price={this.state.refinePrice}/>
 
       <div class="show-list">
 
@@ -94,6 +96,8 @@ class CustomRefine extends React.Component {
   render(){
 
     const location = this.props.location;
+    const category = this.props.category;
+    const price = this.props.price;
 
     return (
     <div id="top">
@@ -114,7 +118,7 @@ class CustomRefine extends React.Component {
 
 
       <label for="category-select">Category</label>
-      <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={this.props.refineCategory}>
+      <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={category}>
         <option value="all">Any</option>
         <option value="meat">Meat</option>
         <option value="pizza">Pizza</option>
@@ -126,7 +130,7 @@ class CustomRefine extends React.Component {
 
 
       <label for="price-select">Price</label>
-      <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={this.props.refinePrice}>
+      <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={price}>
         <option value="all">Any</option>
         <option value="$">$</option>
         <option value="$$">$$</option>
@@ -272,8 +276,16 @@ class ResturantList extends React.Component {
 
       return (
         <div>
-        
-         {this.props.resturants.filter((resturant) => this.props.refineLocation === resturant.location).map((resturant, index) =>
+  
+         {this.props.resturants.filter((resturant) => {
+
+           if (this.props.refineLocation === 'all'){
+             return (this.props.resturants)
+           }
+           else return (resturant.location === this.props.refineLocation)
+
+         })
+         .map((resturant, index) =>
           (
           <div id={resturant.id} key={index}>
            <div class="resturant_item">
