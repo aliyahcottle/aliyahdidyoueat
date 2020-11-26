@@ -38,8 +38,6 @@ render(){
 
      <CustomRefine />
 
-     <button>Pick Something Nice For Us?</button>
-
       <div class="show-list">
 
         <QuickRefine />
