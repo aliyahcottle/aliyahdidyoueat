@@ -35,9 +35,9 @@ class ListView extends React.Component {
 constructor(props){
   super(props);
   this.state = {
-    refineLocation: 'mississauga',  // refine location state. default: all
+    refineLocation: 'all',  // refine location state. default: all
     refineCategory: 'all', // refine category state. default: all
-    refinePrice: "$" // refine price state. default: $
+    refinePrice: 'all' // refine price state. default: $
   };
 
   this.handleChangeLocation = this.handleChangeLocation.bind(this);
@@ -67,7 +67,10 @@ render(){
         <QuickRefine/>
       
           <Fade left>
-            <ResturantList resturants={this.props.resturants} refineLocation={this.state.refineLocation} />
+            <ResturantList resturants={this.props.resturants} 
+                           refineLocation={this.state.refineLocation} 
+                           refineCategory={this.state.refineCategory} 
+                           refinePrice={this.state.refinePrice} />
           </Fade>
 
        </div>
@@ -102,41 +105,43 @@ class CustomRefine extends React.Component {
     return (
     <div id="top">
       <div class="custom-select">
-
       <p>Refine:</p>
-      <label for="location-select">Location</label>
-      <select name="location-select" class="location-select" onChange={this.handleChangeLocation} value={location}>
-        <option value="all">Any</option>
-        <option value="brampton">Brampton</option>
-        <option value="mississauga">Mississauga</option>
-        <option value="milton">Milton</option>
-        <option value="oakville">Oakville</option>
-        <option value="niagara">Niagara Region</option>
-        <option value="toronto">Toronto</option>
-        <option value="scarbourough">Scarbourough</option>
-      </select>
+      <div>
+        <select name="location-select" class="location-select" onChange={this.handleChangeLocation} value={location}>
+          <option value="all">Location</option>
+          <option value="brampton">Brampton</option>
+          <option value="mississauga">Mississauga</option>
+          <option value="milton">Milton</option>
+          <option value="oakville">Oakville</option>
+          <option value="niagara">Niagara Region</option>
+          <option value="toronto">Toronto</option>
+          <option value="scarbourough">Scarbourough</option>
+        </select>
+      </div>
+    
+
+      <div>
+        <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={category}>
+          <option value="all">Category</option>
+          <option value="meat">Meat</option>
+          <option value="pizza">Pizza</option>
+          <option value="seafood">Seafood</option>
+          <option value="tacos">Tacos</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="drinks">Drinks</option>
+        </select>
+      </div>
 
 
-      <label for="category-select">Category</label>
-      <select name="category-select" class="category-select" onChange={this.handleChangeCategory} value={category}>
-        <option value="all">Any</option>
-        <option value="meat">Meat</option>
-        <option value="pizza">Pizza</option>
-        <option value="seafood">Seafood</option>
-        <option value="tacos">Tacos</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="drinks">Drinks</option>
-      </select>
-
-
-      <label for="price-select">Price</label>
-      <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={price}>
-        <option value="all">Any</option>
-        <option value="$">$</option>
-        <option value="$$">$$</option>
-        <option value="$$$">$$$</option>
-      </select>
-      
+      <div>
+        <select name="price-select" class="price-select" onChange={this.handleChangePrice} value={price}>
+          <option value="all">Price</option>
+          <option value="$">$</option>
+          <option value="$$">$$</option>
+          <option value="$$$">$$$</option>
+        </select>
+      </div>
+     
       </div>
       
     </div>
@@ -272,17 +277,18 @@ class ResturantList extends React.Component {
       render(){
 
       const location = this.props.refineLocation;
-      console.log(location);
+      const category = this.props.refineCategory;
+      const price = this.props.refinePrice;
 
       return (
-        <div>
+        <div class="resturant_list dark_bg">
   
          {this.props.resturants.filter((resturant) => {
 
-           if (this.props.refineLocation === 'all'){
+           if (location === 'all' && category === 'all' && price === "all"){
              return (this.props.resturants)
            }
-           else return (resturant.location === this.props.refineLocation)
+           else return (resturant.location === location && resturant.category === category)
 
          })
          .map((resturant, index) =>
