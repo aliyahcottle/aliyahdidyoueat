@@ -56,6 +56,7 @@ i{
   border-radius: 0px 0px 30px 30px;
   margin-top: 2px !important;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 button.quick_button{
@@ -284,13 +285,13 @@ background-color: #131212;
 .resturant_details{
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  width: 50%;
+  margin-top: 9rem;
 }
 
 .resturant_details h1{
   margin: 0px;
   margin-top: 2rem;
+  
 }
 
 .exit{

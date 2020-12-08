@@ -284,6 +284,8 @@ class ResturantList extends React.Component {
 
       return (
         <div class="resturant_list dark_bg">
+
+          <h1>Food Choices</h1>
   
          {this.props.resturants.filter((resturant) => {
 
@@ -337,7 +339,15 @@ class ResturantList extends React.Component {
 
 /* Resturant Card Component: Generated card for restuant list */
 const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, resturantURL, resturantDescription, location, lastResturant}) => {
-   
+  
+  let defaultProps = {
+    center: {
+      lat: 59.95,
+      lng: 30.33
+    },
+    zoom: 11
+  };
+
   const showHideClassName = show ? 'modal display-block': 'modal display-none';
 
    return (
@@ -352,17 +362,19 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
 
       <div class="map_section">
 
-        <div class="map" style={{ height: '100vh', width: '100vw' }}>
-          <GoogleMap
-            bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
-            defaultCenter={location}
-            zoom={11}>
-          </GoogleMap>
-        </div>
-
+   
         <div class="resturant_details">
               
                <a class="exit" href={lastResturant} onClick={handleClose}><button>X</button></a>
+
+               <div class="map" style={{ height: '100vh', width: '100vw' }}>
+              <GoogleMap
+                bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
+                defaultCenter={defaultProps.center}
+                zoom={11}>
+              </GoogleMap>
+            </div>
+
 
                <div class="detail_container">
 
@@ -372,8 +384,6 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
                 <p>{resturantDescription}</p>
               
                 <a href={resturantURL} target="_blank" rel="noreferrer">{resturantName}</a>
-                
-                <div id="map"></div>
 
                 <div class="resturant_buttons">
                   <button>Text Aliyah</button>
