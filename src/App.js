@@ -4,6 +4,7 @@ import Fade from 'react-reveal/Fade';
 import {CSSTransition} from 'react-transition-group';
 import {resturantData} from './resturants';
 import GoogleMap from 'google-map-react';
+import {ReactComponent as ReactLogo} from './images/sorry_dunno.svg';
 
 
 /* Aliyah, Did You Eat Entry Point */
@@ -21,7 +22,7 @@ class App extends React.Component {
 
     <ListView resturants={resturantData}/>
 
-    <footer> Aliyah Cottle </footer>
+    <footer> So, Aliyah likes to eat but hates to make reservations. <i>Aliyah, did you eat</i> is a personal application to test my developer skills and see some friends as an added bonus.</footer>
   
   </div>
 
@@ -64,6 +65,7 @@ render(){
 
       <div class="show-list">
 
+   
         <QuickRefine/>
       
           <Fade left>
@@ -288,11 +290,15 @@ class ResturantList extends React.Component {
            if (location === 'all' && category === 'all' && price === "all"){
              return (this.props.resturants)
            }
-           else return (resturant.location === location && resturant.category === category)
+          })
+         .map((resturant, index) => {
 
-         })
-         .map((resturant, index) =>
-          (
+          console.log(resturant.length);
+           if (resturant.length === 0){
+             return <ReactLogo/>
+ 
+           } else return (
+          
           <div id={resturant.id} key={index}>
            <div class="resturant_item">
             <div class="overlay">
@@ -310,10 +316,8 @@ class ResturantList extends React.Component {
             </div>   
            </div>
           </div>
-
-         
-           ))}  
-
+        )})}
+       
             <ResturantCard 
                 show={this.state.show} 
                 handleClose={this.hideModal} 

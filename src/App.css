@@ -18,7 +18,7 @@
 }
 
 .container h1{
-  margin: 2rem;
+  margin: 1rem;
   font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
   color: #F4A261;
@@ -30,11 +30,12 @@ header{
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  width: 100%;
+  width: 100;
   background-color: #131212;
   position: sticky;
   top: 0px;
   z-index: 1;
+  padding: 1rem;
 }
 
 i{
@@ -95,8 +96,8 @@ button.quick_button{
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: auto;
   align-items: center;
+  min-height: 100vh;
 }
 
 .resturant_item{
@@ -104,7 +105,7 @@ button.quick_button{
   width: 300px;
   height: 160px;
   background-repeat: no-repeat;
-  margin: 1rem;
+  margin-top: 2rem;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -173,18 +174,25 @@ button.quick_button{
   color: white;
 }
 
+.card{
+  padding: 1rem;
+}
+
+
 footer{
   background-color: black;
   color: white;
   padding: 1rem;
   position: relative;
   bottom: 0px;
-  width: 100%;
+  font-size: x-small;
 }
+
+
 
 .custom-select{
 display: flex;
-padding: 2rem;
+padding: 1rem;
 justify-content: center;
 align-items: center;
 background-color: #131212;
@@ -298,6 +306,9 @@ a {
   color: black;
 }
 
+select{
+  padding: .2rem;
+}
 
 @media only screen and (max-width: 600px) {
 .map_section{
