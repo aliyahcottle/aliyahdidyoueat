@@ -229,7 +229,7 @@ background-color: #131212;
   left: 0 !important;
   width:100vw;
   height: 70vh;
-  background:white;
+  background: transparent;
   
 }
 
@@ -276,19 +276,21 @@ background-color: #131212;
 
 .map_section{
   height: 100vh;
-  background: white;
+  background: transparent;
   display: flex;
-  position: fixed;
-  top: 0;
+  justify-content: flex-end;
+  
 }
 
 .resturant_details{
   display: flex;
   flex-direction: column;
   margin-top: 9rem;
+  border-radius: 20px 20px 0px 0px;
+  background-color: thistle;
 }
 
-.resturant_details h1{
+.resturant_details h1, h3{
   margin: 0px;
 }
 
@@ -299,6 +301,16 @@ background-color: #131212;
 
 .detail_container{
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail_title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
@@ -310,13 +322,24 @@ select{
   padding: .2rem;
 }
 
+.resturant_buttons, .resturant_close{
+  display: flex;
+  justify-content: center;
+}
+
+.resturant_buttons button, .resturant_close button{
+  padding: .5rem;
+  margin: .5rem;
+}
+
+
 @media only screen and (max-width: 600px) {
 .map_section{
   flex-direction: column;
 }
 
 .map{
-  height: 50vh !important;
+  height: 36vh !important;
   width: 100% !important;
 } 
 

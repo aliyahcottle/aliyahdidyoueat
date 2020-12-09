@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Fade from 'react-reveal/Fade';
+import Bounce from 'react-reveal/Bounce';
 import {CSSTransition} from 'react-transition-group';
 import {resturantData} from './resturants';
 import GoogleMap from 'google-map-react';
@@ -352,12 +353,13 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
 
    return (
 
+    
     <CSSTransition
     in={show}
     timeout={300}
     classNames="alert">
  
-     
+ <Bounce bottom>
     <div class={showHideClassName}>
 
       <div class="map_section">
@@ -367,14 +369,27 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
               
                <div class="detail_container">
 
-                <h1>{resturantName}</h1>
-                <h3>{resturantCategory}</h3>
+                <div class="detail_title">
+                  <h1>{resturantName}</h1> 
+                  <p style={{padding: '0.5rem' }}> - </p> 
+                  <h3>{resturantCategory}</h3>
+                </div>
+                
 
                 <p>{resturantDescription}</p>
               
                 <a href={resturantURL} target="_blank" rel="noreferrer">{resturantName}</a>
                 
               </div>
+
+              <div class="resturant_buttons">
+                  <button>Text Aliyah</button>
+                  <button>Book Table</button>
+                </div>
+                
+                <div class="resturant_close">
+                <a href={lastResturant} onClick={handleClose}><button>Find more food</button></a>
+                </div>
               
                 <div class="map" style={{ height: '100vh', width: '100vw' }}>
               <GoogleMap
@@ -384,12 +399,7 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
               </GoogleMap>
             </div>
 
-                <div class="resturant_buttons">
-                  <button>Text Aliyah</button>
-                  <button>Book Table</button>
-                </div>
-                
-                <a href={lastResturant} onClick={handleClose}><button>Find more food</button></a>
+             
 
           </div>  
       </div>
@@ -397,9 +407,9 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
 
           
       </div>
-
+      </Bounce>
     </CSSTransition>
-
+  
    );
 }
 
