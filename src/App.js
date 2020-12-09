@@ -365,17 +365,6 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
    
         <div class="resturant_details">
               
-               <a class="exit" href={lastResturant} onClick={handleClose}><button>X</button></a>
-
-               <div class="map" style={{ height: '100vh', width: '100vw' }}>
-              <GoogleMap
-                bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
-                defaultCenter={defaultProps.center}
-                zoom={11}>
-              </GoogleMap>
-            </div>
-
-
                <div class="detail_container">
 
                 <h1>{resturantName}</h1>
@@ -384,13 +373,24 @@ const ResturantCard = ({ handleClose, show, resturantName, resturantCategory, re
                 <p>{resturantDescription}</p>
               
                 <a href={resturantURL} target="_blank" rel="noreferrer">{resturantName}</a>
+                
+              </div>
+              
+                <div class="map" style={{ height: '100vh', width: '100vw' }}>
+              <GoogleMap
+                bootstrapURLKeys={{key: 'AIzaSyDM7yM72S7w7OPdmnKiCOlrJyY5rwBRN1o'}}
+                defaultCenter={defaultProps.center}
+                zoom={11}>
+              </GoogleMap>
+            </div>
 
                 <div class="resturant_buttons">
                   <button>Text Aliyah</button>
                   <button>Book Table</button>
                 </div>
+                
+                <a href={lastResturant} onClick={handleClose}><button>Find more food</button></a>
 
-              </div>
           </div>  
       </div>
 
